@@ -220,6 +220,11 @@ buildroot: optee-os
 	@echo "BR2_PACKAGE_OPTEE_TEST=y" >> ../out-br/extra.conf
 	@echo "BR2_PACKAGE_OPTEE_EXAMPLES=y" >> ../out-br/extra.conf
 	@echo "BR2_PACKAGE_STRACE=y" >> ../out-br/extra.conf
+	@echo "BR2_ROOTFS_USERS_TABLES=\"../build/br-ext/configs/users\"" >> ../out-br/extra.conf
+	@echo "BR2_PACKAGE_OPENSSH=y" >> ../out-br/extra.conf
+	@echo "BR2_PACKAGE_DHCPCD=y" >> ../out-br/extra.conf
+	@echo "BR2_PACKAGE_SUDO=y" >> ../out-br/extra.conf
+	@echo "BR2_TARGET_ENABLE_ROOT_LOGIN=y" >> ../out-br/extra.conf
 ifeq ($(CFG_TEE_BENCHMARK),y)
 	@echo "BR2_PACKAGE_OPTEE_BENCHMARK=y" >> ../out-br/extra.conf
 endif
