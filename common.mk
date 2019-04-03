@@ -21,6 +21,7 @@ BENCHMARK_APP_PATH		?= $(ROOT)/optee_benchmark
 BENCHMARK_APP_OUT		?= $(BENCHMARK_APP_PATH)/out
 LIBYAML_LIB_OUT			?= $(BENCHMARK_APP_OUT)/libyaml/out/lib
 BUILDROOT_TARGET_ROOT		?= $(ROOT)/out-br/target
+OVERLAY_PATH			?= $(BUILD_PATH)/br-ext/overlay
 
 # default high verbosity. slow uarts shall specify lower if prefered
 CFG_TEE_CORE_LOG_LEVEL		?= 3
@@ -225,6 +226,8 @@ ifeq ($(CFG_TEE_BENCHMARK),y)
 endif
 	@echo "BR2_PACKAGE_OPENSSL=y" >> ../out-br/extra.conf
 	@echo "BR2_PACKAGE_LIBOPENSSL=y" >> ../out-br/extra.conf
+	@echo "BR2_ROOTFS_OVERLAY=\"$(OVERLAY_PATH)\"" >> \
+		../out-br/extra.conf
 	@(cd .. && python build/br-ext/scripts/make_def_config.py \
 		--br buildroot --out out-br --br-ext build/br-ext \
 		--top-dir "$(ROOT)" \
